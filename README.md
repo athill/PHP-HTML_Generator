@@ -82,3 +82,9 @@ $h->simpleTable(
 		'atts'=>'border="1" id="this-table"'
 	)
 );
+</pre></code>
+
+A couple things I've skipped over:
+1. You can prepend (relavant) tags with 'o', 'c', or 'co'. For example, 'otable' generates &lt;table ...&gt;, 'ctable' generates &lt;/table&gt;, and 'cotr' generates &lt;/tr&gt;&lt;tr&gt; The 'ol' and 'col' tags represent exceptions which have not yet been addressed.
+2. simpleTable is just an example of abstracting the basic concept. 
+3. Html.class.php extends Xml.class.php. Xml.class.php is where rendering, indenting (tab), bufferring, etc. are actually implemented.
