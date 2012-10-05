@@ -69,3 +69,16 @@ produces
 &lt;/table&gt; &lt;!-- close this-table --&gt;
 </pre></code>
 
+similar results could be achieved by:
+
+<pre><code>
+$h->simpleTable(
+	array(
+		'headers'=>array('one', 'two'), 
+		'data'=>array(
+			array('a', 'b'),
+			array('c', 'd')
+		),
+		'atts'=>'border="1" id="this-table"'
+	)
+);
