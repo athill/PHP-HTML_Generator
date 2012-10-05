@@ -13,9 +13,11 @@ The workhorse is a __call (method missing) method that categorizes the called fu
 
 produces (where 'p' is a non-empty, non-indent tag)
 
+<pre><code>
 &lt;p att1="att1value"&gt;
 some text
 &lt;/p&gt;
+</pre></code>
 
 while (where 'link' is an empty (indent is irrelavant in this case (see below)) tag)
 
@@ -23,7 +25,9 @@ while (where 'link' is an empty (indent is irrelavant in this case (see below)) 
 
 produces
 
+<pre><code>
 &lt;link att1="att1value" /&gt;
+</pre></code>
 
 Indention primarily comes into play when nexting tags. For example, 
 
@@ -48,6 +52,7 @@ $h->ctable('close this-table');
 
 produces
 
+<pre><code>
 &lt;table border="1" id="this-table"&gt;
 &lt;tr&gt;
 	&lt;th&gt;one&lt;/th&gt;
@@ -62,5 +67,5 @@ produces
 	&lt;td&gt;d&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt; &lt;!-- close this-table --&gt;
-
+</pre></code>
 
