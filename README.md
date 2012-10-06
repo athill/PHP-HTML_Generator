@@ -3,11 +3,13 @@ PHP-HTML_Generator
 
 Simple interface to generate HTML. Default output is to screen, but buffers allow saving output for later use.
 
-I make a global singleton, $h, so examples will use that.
+Html.class.php extends Xml.class.php
 
-The basic base idea is to easily generate HTML tabs in script mode without using echo, etc.
+I make a global singleton for Html.class.php, $h, so examples will use that.
 
-The workhorse is a __call (method missing) method that categorizes the called function by empty tags, non-empty tags, and indent tags and acts upon it. So, for example, 
+The basic base idea is to easily generate HTML tags in script mode without using 'echo', etc.
+
+The workhorse is the <a href="http://www.php.net/manual/en/language.oop5.overloading.php#object.call" target="_blank">__call</a> (<a href="http://en.wikipedia.org/wiki/Ruby_%28programming_language%29#Metaprogramming" target="_blank">missing method</a>) method that categorizes the called function by valid empty tags, non-empty tags, and indent tags and acts upon it. So, for example, 
 
 <pre><code>$h->p('some text', 'att1="att1value" ...');</pre></code>
 
