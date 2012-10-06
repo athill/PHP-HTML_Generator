@@ -9,7 +9,7 @@ I make a global singleton for Html.class.php, $h, so examples will use that.
 
 The basic base idea is to easily generate HTML tags in script mode without using 'echo', etc.
 
-The workhorse is the <a href="http://www.php.net/manual/en/language.oop5.overloading.php#object.call" target="_blank">__call</a> (<a href="http://en.wikipedia.org/wiki/Ruby_(programming_language)#Metaprogramming" target="_blank">missing method</a>) method that categorizes the called function by valid empty tags, non-empty tags, and indent tags and acts upon it. So, for example, 
+The workhorse is the <a href="http://www.php.net/manual/en/language.oop5.overloading.php#object.call" target="_blank">__call</a> (<a href="http://en.wikipedia.org/wiki/Metaprogramming" target="_blank">missing method</a>) method that categorizes the called function by valid empty tags, non-empty tags, and indent tags and acts upon it. So, for example, 
 
 <pre><code>$h->p('some text', 'att1="att1value" ...');</pre></code>
 
