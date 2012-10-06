@@ -31,7 +31,7 @@ produces
 &lt;link att1="att1value" /&gt;
 </pre></code>
 
-Indention primarily comes into play when nexting tags. For example, 
+Indention primarily comes into play when nesting tags. For example, 
 
 <pre><code>
 $h->otable('border="1" id="this-table"');
