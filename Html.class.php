@@ -36,9 +36,9 @@ class Html extends Xml {
 	 * constructor
 	 */ 
  	function __construct() {
-		$GLOBALS['config']['webroot'] = (array_key_exists('config', $GLOBALS) && 
-				array_key_exists('webroot', $GLOBALS['config'])) ? 
-			$GLOBALS['config']['webroot'] :
+		$GLOBALS['site']['webroot'] = (array_key_exists('site', $GLOBALS) && 
+				array_key_exists('webroot', $GLOBALS['site'])) ? 
+			$GLOBALS['site']['webroot'] :
 			''; 		
  	}	
 
@@ -111,6 +111,11 @@ class Html extends Xml {
 		}		
 	}
 
+	private function fixLink($link) {
+		// print_r($GLOBALS['site']);
+		return (substr($link, 0, 1) == "/") ? $GLOBALS['site']['webroot'] . $link : $link;
+	}
+
 	/*****
 	 * Document Tags
 	 ******************/
@@ -165,12 +170,18 @@ class Html extends Xml {
 	////img
 	public function img($src, $alt, $atts="") {
 		$atts = $this->fixAtts($atts);
-		$this->tnl('<img src="' . $src . '" alt="' . $alt . '"'.$atts.'/>');
+		$this->tnl('<img src="' . $this->fixLink($src) . '" alt="' . $alt . '"'.$atts.'/>');
 	}
 
 	///////Javascript
-	public function scriptfile($uri) {
-		$this->tnl('<script type="text/javascript" src="'.$uri.'"></script>');
+	public function scriptfile($files) {
+		//$this->tnl('<script type="text/javascript" src="'.$uri.'"></script>');
+	  	if (!is_array($files)) $files = array($files);
+		foreach ($files as $file) {
+			//if (substr($file, 0, 1) == "/") $file = $GLOBALS['site']['webroot'] . $file;
+			//$this->tnl('<link rel="stylesheet" type="text/css" href="'.$sheet.'" />');	
+			$this->tag('script', 'src="'.$this->fixLink($file).'"', '', true, false);
+		}		
 	}
 
 	public function script($js) {
@@ -227,8 +238,9 @@ class Html extends Xml {
 	 * Generates stylesheet link tag(s) 
 	 */	 
 	  public function stylesheet($sheets) {
+	  	if (!is_array($sheets)) $sheets = array($sheets);
 		foreach ($sheets as $sheet) {
-			if (substr($sheet, 0, 1) == "/") $sheet = $GLOBALS['config']['webroot'] & $sheet;
+			if (substr($sheet, 0, 1) == "/") $sheet = $GLOBALS['site']['webroot'] . $sheet;
 			$this->tnl('<link rel="stylesheet" type="text/css" href="'.$sheet.'" />');	
 		}
 	 }	 
