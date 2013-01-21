@@ -20,7 +20,7 @@ class Xml {
 
 	private $tabs = 0;
 	private $buffer = array();
-	private $bufferIndex = 0;
+	protected $bufferIndex = -1;
 	private $output = true;
 	public $strictIndent = false;
 
@@ -31,7 +31,7 @@ class Xml {
  	function __construct() {
  		$this->tabs       = 0;
  		$this->buffer      = array();
- 		$this->bufferIndex = 0;
+ 		$this->bufferIndex = -1;
 		$this->output      = true;
 		$this->strictIndent = true;
  	}		
@@ -69,11 +69,11 @@ class Xml {
 	 */
 	public function endBuffer() {
 		$buf = "";
-		if ($this->bufferIndex > 0) {
+		if ($this->bufferIndex > -1) {
 			$buf = array_pop($this->buffer);
 			$this->bufferIndex--;
 		}
-		if ($this->bufferIndex == 0) $this->output = true;
+		if ($this->bufferIndex == -1) $this->output = true;
 		return $buf;
 	}
 
