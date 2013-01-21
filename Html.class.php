@@ -164,7 +164,7 @@ class Html extends Xml {
 	////Links
 	public function a($href, $display="", $atts="") {
 		if ($display == "") $display = $href;
-		$this->tnl('<a href="'.$href.'"'.$this->fixAtts($atts).'>'.$display.'</a>');
+		$this->tnl('<a href="'.$this->fixLink($href).'"'.$this->fixAtts($atts).'>'.$display.'</a>');
 	}
 
 	////img
