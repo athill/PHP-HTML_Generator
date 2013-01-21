@@ -92,7 +92,7 @@ class Html extends Xml {
 		} else if ($command == 'o' && in_array($tag, $nonemptyTags)) {
 			$atts = count($args) > 0 ? $args[0] : '';
 			$indent = in_array($tag, $indentTags);
-			echo $indent;
+			// echo $indent;
 			$this->otag($tag, $atts, $indent);
 		////close tag
 		} else if ($command == 'c' && in_array($tag, $nonemptyTags)) {
