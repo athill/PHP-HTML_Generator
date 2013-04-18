@@ -70,7 +70,7 @@ class Html extends Xml {
 			$atts = count($args) > 0 ? $args[0] : '';
 			$this->tag($name, $atts);
 		////input tag
-		} else if (in_array($name, explode(',', "radio,checkbox,hidden,submit,button,intext,date,color,datetime,".
+		} else if (in_array($name, explode(',', "radio,checkbox,hidden,submit,button,reset,number,month,intext,date,color,datetime,".
 				"inemail,range,search,tel,time,url,week"))) {
 			$fieldname = $args[0];
 			$value = count($args) >= 2 ? $args[1] : '';
@@ -619,7 +619,7 @@ class Html extends Xml {
 	 */
 	public function label($id, $content, $atts='') {
 		$atts = 'for="'.$id.'"' . $this->fixAtts($atts);
-		$this->tag('label', $atts, $content, true);
+		$this->tag('label', $atts, $content, true, false);
 	}
 
 
