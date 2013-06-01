@@ -368,8 +368,16 @@ class Html extends Xml {
   	public function liArray($listType, $listItemArray, $atts='', $liAtts='') {
 		if (!in_array($listType, array("ul","ol"))) $listType = "ul";
 		 $this->otag($listType, $atts, true);
-         foreach ($listItemArray as $item) {
-             $this->tag("li", $liAtts, $item);
+         foreach ($listItemArray as $i => $item) {
+         	$liAtt = '';
+         	if (is_array($liAtts)) {
+         		if (array_key_exists($i, $liAtts)) {
+         			$liAtt = $liAtts[$i];
+         		} else {
+         			$liAtt = $liAtts;
+         		}
+         	}
+            $this->tag("li", $liAtt, $item);
          }
          $this->ctag($listType, true);
      }
@@ -932,6 +940,4 @@ class Html extends Xml {
 		$this->cdiv();
 	}
 }
-
-
 ?>	
