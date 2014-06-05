@@ -63,6 +63,11 @@ class Xml {
 		$this->output = false;
 	}
 
+	//// shortcut
+	public function sb() {
+		$this->startBuffer();
+	}
+
 	/**
 	 * Stop buffering results of funcitons, return buffer
 	 * @return	string	buffered HTML
@@ -75,6 +80,10 @@ class Xml {
 		}
 		if ($this->bufferIndex == -1) $this->output = true;
 		return $buf;
+	}
+
+	public function eb() {
+		return $this->endBuffer();
 	}
 
 	/**
