@@ -16,7 +16,5 @@ $content = $h->endBuffer();
 
 $h->tnl($content);
 
-print_r($h->atstr2hash('href="fun" img="thing"'));
-
 $h->chtml();
 ?>
