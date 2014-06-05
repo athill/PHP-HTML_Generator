@@ -18,8 +18,8 @@ Copyright 2012 andy hill
 /**
  * HTML generating interface
  *
- * @author andy hill 1 2009-2013
- * @version 3.1
+ * @author andy hill 1 2009-2014
+ * @version 3.2
  *
  */
 require_once('Xml.class.php');
@@ -136,6 +136,9 @@ class Html extends Xml {
 		$this->cpre();
 	}
 	
+
+	//// rather than output tag to screen, return it as a string
+	//// $str = $h->rtn('img', array('src', 'alt'));
 	public function rtn($methodName, $args=array()) {
 		if ($methodName == "rtn") die("Recursion fail");
 		if (!method_exists($this, $methodName)) die("Bad method name");
@@ -196,8 +199,8 @@ class Html extends Xml {
 	public function body($atts="") {
 		$atts = $this->fixAtts($atts);
 		if ($this->strictIndent) $this->tabs--;
-		$this->tnl('</head>');
-		$this->tnl("<body$atts>");
+		$this->ctag('head');
+		$this->otag('body', $this->fixAtts($atts));
 	}
 
 	public function chtml() {
@@ -218,15 +221,18 @@ class Html extends Xml {
 				 }	
 			}
 		}
-		$this->tnl('</body>');
-		$this->tnl("</html>");
+		$this->ctag('body');
+		$this->ctag("html");
 	}
 
 	/********************
 	 * General Tags
 	 **********************/
 	public function br($count=1) {
-		$this->tnl(str_repeat("<br />", $count));
+		for ($i = 0; $i < $count; $i++) {
+			$this->tag('br');
+		}
+		// $this->tnl(str_repeat("<br />", $count));
 	}
 
 	////Links
