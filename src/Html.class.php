@@ -1,4 +1,5 @@
 <?php
+namespace athill\Generator
 /*
 Copyright 2012 andy hill
 
